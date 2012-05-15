@@ -28,7 +28,8 @@ $(LOCAL_GOPATH)/src/github.com/soundcloud/doozer: $(LOCAL_GOPATH)/src
 local_build:
 	test -e $(DOOZERD_GO_PATH) || ln -sf $${PWD} $(DOOZERD_GO_PATH)
 	-GOPATH=$(LOCAL_GOPATH) go get .
-	GOPATH=$(LOCAL_GOPATH) ./make.sh
+	-GOPATH=$(LOCAL_GOPATH) ./make.sh
+	 GOPATH=$(LOCAL_GOPATH) go build
 
 
 ########## packaging
