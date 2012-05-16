@@ -68,6 +68,7 @@ func TestRunProposeDelivered(t *testing.T) {
 	var r run
 	r.out = make(chan Packet, 100)
 	r.ops = make(chan store.Op, 100)
+	r.bound = 10
 
 	r.update(&packet{msg: msg{Cmd: propose}}, -1, new(triggers))
 	assert.Equal(t, true, r.c.begun)
@@ -80,6 +81,7 @@ func TestRunSendsCoordPacket(t *testing.T) {
 	var r run
 	r.c.crnd = 1
 	r.out = c
+	r.bound = 10
 	r.addr = []*net.UDPAddr{x, y}
 
 	var got msg
