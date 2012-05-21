@@ -52,7 +52,7 @@ package: local_build
 	$(FPM_EXECUTABLE) -n "doozerd" \
 		-C $(FAKEROOT) \
 		--description "doozerd" \
-		$(FPM_ARGS) -t deb -v $$(./version.sh) --iteration $(RELEASE) .;
+		$(FPM_ARGS) -t deb -v $$(GIT_DIR=$${PWD} ./version.sh) --iteration $(RELEASE) .;
 
 
 bump_package_release:
