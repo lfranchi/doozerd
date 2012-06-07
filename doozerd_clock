@@ -1,0 +1,16 @@
+#!/bin/bash
+export DURI=${DURI-127.0.0.1:8046}
+
+doozer -a="doozer:?ca=$DURI" find /ctl/cal >/dev/null 2>&1 || exit 0
+
+for id in $(doozer -a="doozer:?ca=$DURI" find /ctl/cal  | grep "/[0-9]$") 
+do
+  echo "${id}: $(doozer -a="doozer:?ca=$DURI" get ${id})"
+done
+
+echo ""
+
+for id in $(doozer -a="doozer:?ca=$DURI" find /ctl/node | sed -e 's#^/ctl/node/##g' -e 's#/.*$##g' | sort | uniq)
+do
+  echo "${id}: $(doozer -a="doozer:?ca=$DURI" get /ctl/node/${id}/applied)"
+done
