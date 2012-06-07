@@ -11,3 +11,4 @@ peer/version.go
 .go_path
 doozerd
 doozer
+tags
