@@ -1,19 +1,19 @@
 #!/bin/bash
 TIMEOUT=5
 killall doozerd
-doozerd -timeout=$TIMEOUT -l 127.0.0.1:8046 -w=false 2>/dev/null &
+./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38046 -w=false 2>/dev/null &
 MASTER_PID=$!
 sleep 1
-doozerd -timeout=$TIMEOUT -l 127.0.0.1:8047 -a 127.0.0.1:8046 -w=false 2>/dev/null &
+./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38046 -w=false 2>/dev/null &
 SLAVE1_PID=$!
 sleep 1
 printf '' | doozer set /ctl/cal/1 0
 sleep 1
-doozerd -timeout=$TIMEOUT -l 127.0.0.1:8048 -a 127.0.0.1:8046 -w=false 2>/dev/null &
+./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38046 -w=false 2>/dev/null &
 SLAVE2_PID=$!
 sleep 1
 printf '' | doozer set /ctl/cal/2 0
 
-echo -e "\n\nMaster pid:\n\tkill $MASTER_PID\nto restart it:\n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8046 -a 127.0.0.1:8047 -w=false 2>/dev/null # or \n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8046 -a 127.0.0.1:8048 -w=false 2>/dev/null"
-echo -e "\n\nSlave1 pid:\n\tkill $SLAVE1_PID\nto restart it:\n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8047 -a 127.0.0.1:8046 -w=false 2>/dev/null # or \n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8047 -a 127.0.0.1:8048 -w=false 2>/dev/null"
-echo -e "\n\nSlave2 pid:\n\tkill $SLAVE2_PID\nto restart it:\n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8048 -a 127.0.0.1:8046 -w=false 2>/dev/null # or \n\tdoozerd -timeout=$TIMEOUT -l 127.0.0.1:8048 -a 127.0.0.1:8047 -w=false 2>/dev/null"
+echo -e "\n\nMaster pid:\n\tkill $MASTER_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38046 -a 127.0.0.1:38047 -w=false # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38046 -a 127.0.0.1:38048 -w=false "
+echo -e "\n\nSlave1 pid:\n\tkill $SLAVE1_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38048 -w=false "
+echo -e "\n\nSlave2 pid:\n\tkill $SLAVE2_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38047 -w=false "

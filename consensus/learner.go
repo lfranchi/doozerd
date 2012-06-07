@@ -1,5 +1,10 @@
 package consensus
 
+import (
+	"fmt"
+	"os"
+)
+
 type learner struct {
 	round  int64
 	quorum int64
@@ -47,9 +52,11 @@ func (ln *learner) update(p *packet, from int) (m *msg, v []byte, ok bool) {
 		case mRound == ln.round:
 			k := string(v)
 
+      os.Exit(55)
 			if ln.voted[from] {
 				break
 			}
+
 			ln.votes[k]++
 			ln.voted[from] = true
 

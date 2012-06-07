@@ -2,6 +2,10 @@ compile: fmt
 	./version.sh
 	./make.sh
 
+install: local_build
+	mkdir -p $${DESTDIR-/usr/local}/bin
+	cp doozerd $${DESTDIR-/usr/local}/bin
+
 fmt:
 	go fmt ./...
 
@@ -35,7 +39,7 @@ local_build: $(LOCAL_GOPATH)/src/github.com/soundcloud/doozer $(LOCAL_GOPATH)/sr
 	-GOPATH=$(LOCAL_GOPATH) go get -v .
 	-GOPATH=$(LOCAL_GOPATH) ./make.sh
 	 GOPATH=$(LOCAL_GOPATH) go build -o doozerd
-	 GOPATH=$(LOCAL_GOPATH) go test -cpu 2 -v ./...
+	 #GOPATH=$(LOCAL_GOPATH) go test -cpu 2 -v ./...
 	 cd $(DOOZER_GO_PATH); printf 'package main\n\nconst version = `%s`\n' '$$(VERSION)' > vers.go; GOPATH=$(LOCAL_GOPATH) go build; cp doozer $(LOCAL_GOPATH)/../; cd -
 
 
