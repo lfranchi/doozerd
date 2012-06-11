@@ -4,6 +4,12 @@ cat<<EOF>$TMP_FILE
 file doozerd
 set args -timeout 5 -l 127.0.0.1:38046 -a 127.0.0.1:38047
 b learner.go:50 if from < 0
+commands
+print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+print "the value of 'from' is smaller than 0 ... context:"
+print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+list
+end
 run
 EOF
 
