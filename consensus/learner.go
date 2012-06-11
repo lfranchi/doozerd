@@ -52,7 +52,6 @@ func (ln *learner) update(p *packet, from int) (m *msg, v []byte, ok bool) {
 		case mRound == ln.round:
 			k := string(v)
 
-      os.Exit(55)
 			if ln.voted[from] {
 				break
 			}
