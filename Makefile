@@ -44,6 +44,7 @@ FPM_EXECUTABLE:=$$(dirname $$(dirname $$(gem which fpm)))/bin/fpm
 FPM_ARGS=-t deb -m 'Doozerd authors (see page), Daniel Bornkessel <daniel@soundcloud.com> (packaging)' --url http://github.com/soundcloud/doozerd -s dir
 FAKEROOT=fakeroot
 RELEASE=$$(cat .release 2>/dev/null || echo "0")
+VERSION:=$$(GIT_DIR=$${PWD}/.git $${PWD}/version.sh | sed 's/+.*//g')
 
 package: local_build
 	rm -rf $(FAKEROOT)
@@ -55,7 +56,7 @@ package: local_build
 	$(FPM_EXECUTABLE) -n "doozerd" \
 		-C $(FAKEROOT) \
 		--description "doozerd" \
-		$(FPM_ARGS) -t deb -v $$(GIT_DIR=$${PWD} ./version.sh | sed 's/+.*//g') --iteration $(RELEASE) .;
+		$(FPM_ARGS) -t deb -v $(VERSION) --iteration $(RELEASE) .;
 
 
 bump_package_release:
