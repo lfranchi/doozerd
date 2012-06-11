@@ -8,7 +8,7 @@ commands
 print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
 print "the value of 'from' is smaller than 0 ... context:"
 print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
-list
+list 50
 end
 run
 EOF
