@@ -7,13 +7,23 @@ sleep 1
 ./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38046 -w=false 2>/dev/null &
 SLAVE1_PID=$!
 sleep 1
-printf '' | doozer set /ctl/cal/1 0
+printf '' | doozer -a="doozer:?ca=127.0.0.1:38046" set /ctl/cal/1 0
 sleep 1
 ./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38046 -w=false 2>/dev/null &
 SLAVE2_PID=$!
 sleep 1
-printf '' | doozer set /ctl/cal/2 0
+printf '' | doozer -a="doozer:?ca=127.0.0.1:38046" set /ctl/cal/2 0
+./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38049 -a 127.0.0.1:38046 -w=false 2>/dev/null &
+SLAVE2_PID=$!
+sleep 1
+printf '' | doozer -a="doozer:?ca=127.0.0.1:38046" set /ctl/cal/3 0
+./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38050 -a 127.0.0.1:38046 -w=false 2>/dev/null &
+SLAVE2_PID=$!
+sleep 1
+printf '' | doozer -a="doozer:?ca=127.0.0.1:38046" set /ctl/cal/4 0
 
 echo -e "\n\nMaster pid:\n\tkill $MASTER_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38046 -a 127.0.0.1:38047 -w=false # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38046 -a 127.0.0.1:38048 -w=false "
 echo -e "\n\nSlave1 pid:\n\tkill $SLAVE1_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38047 -a 127.0.0.1:38048 -w=false "
 echo -e "\n\nSlave2 pid:\n\tkill $SLAVE2_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38048 -a 127.0.0.1:38047 -w=false "
+echo -e "\n\nSlave3 pid:\n\tkill $SLAVE1_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38049 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38049 -a 127.0.0.1:38048 -w=false "
+echo -e "\n\nSlave4 pid:\n\tkill $SLAVE2_PID\nto restart it:\n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38050 -a 127.0.0.1:38046 -w=false  # or \n\t./doozerd -timeout=$TIMEOUT -l 127.0.0.1:38050 -a 127.0.0.1:38047 -w=false "
