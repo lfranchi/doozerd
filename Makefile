@@ -12,7 +12,7 @@ clean:
 
 LOCAL_GOPATH=${PWD}/.go_path
 DOOZERD_GO_PATH=$(LOCAL_GOPATH)/src/github.com/soundcloud/doozerd
-DOOZER_GO_PATH=$(LOCAL_GOPATH)/src/github.com/soundcloud/doozer
+DOOZER_GO_PATH=$(LOCAL_GOPATH)/src/github.com/soundcloud/doozer/cmd/doozer
 
 unexport GIT_DIR
 
