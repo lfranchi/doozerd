@@ -4,7 +4,10 @@ Pre-Reqs:
 --------
 
 - have doozerd locally (call `make local_build`)
-- have doozer locally (if you haven't, after having called `make local_build`, do a `GOPATH=${PWD}/.go_path; cd .go_path/src/github.com/soundcloud/doozer/cmd/doozer/; printf 'package main\n\nconst version = `%s`\n' '$(VERSION)' > vers.go; go build; cp doozer $GOPATH/../; cd -`)
+- have doozer locally ... if you haven't, after having called `make local_build`, do a 
+
+          GOPATH=${PWD}/.go_path; cd .go_path/src/github.com/soundcloud/doozer/cmd/doozer/; printf 'package main\n\nconst version = `%s`\n' '$(VERSION)' > vers.go; go build; cp doozer $GOPATH/../; cd -
+
 - Mac OS X users: you will need to compile an up to date gdb (>7.1) and call it with an absolute path (`doozerd_gdb_script` does that). This involves signing your gdb executable (see below).
 
 Recreate problem:
@@ -15,7 +18,7 @@ Once setup follow these instructions:
 
 Start a doozerd cluster:
 
-     ./doozerd_drill && DURI=127.0.0.1:38047 watch ./doozerd_clock
+     ./doozerd_drill && DURI=127.0.0.1:38047 watch ./doozerd_monitor
 
 and let it run. In another terminal, do
 
