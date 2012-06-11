@@ -12,6 +12,7 @@ clean:
 
 LOCAL_GOPATH=${PWD}/.go_path
 DOOZERD_GO_PATH=$(LOCAL_GOPATH)/src/github.com/soundcloud/doozerd
+DOOZER_GO_PATH=$(LOCAL_GOPATH)/src/github.com/soundcloud/doozer
 
 unexport GIT_DIR
 
@@ -35,6 +36,7 @@ local_build: $(LOCAL_GOPATH)/src/github.com/soundcloud/doozer $(LOCAL_GOPATH)/sr
 	-GOPATH=$(LOCAL_GOPATH) ./make.sh
 	 GOPATH=$(LOCAL_GOPATH) go build -o doozerd
 	 GOPATH=$(LOCAL_GOPATH) go test -cpu 2 -v ./...
+	 GOPATH=$(LOCAL_GOPATH); cd $(DOOZER_GO_PATH); printf 'package main\n\nconst version = `%s`\n' '$$(VERSION)' > vers.go; go build; cp doozer $$GOPATH/../; cd -
 
 
 ########## packaging
@@ -47,6 +49,7 @@ package: local_build
 	rm -rf $(FAKEROOT)
 	mkdir -p $(FAKEROOT)/usr/bin
 	cp doozerd $(FAKEROOT)/usr/bin
+	cp doozer $(FAKEROOT)/usr/bin
 	rm -rf *.deb
 
 	$(FPM_EXECUTABLE) -n "doozerd" \
