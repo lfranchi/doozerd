@@ -4,17 +4,40 @@ cat<<EOF>$TMP_FILE
 set height 0
 file doozerd
 set args -timeout 5 -l 127.0.0.1:38046 -a 127.0.0.1:38047
-b learner.go:50 if from < 0
+
+
+#b boot.go:82
+#commands
+#print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+#print " boot.go ... found a host to attach to"
+#print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+#list
+#end
+#
+#b run.go:89
+#commands
+#print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+#print " run.go: did not find address"
+#print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
+#list
+#end
+
+
+b peer.go:124
 commands
 print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
-print " from < 0
+print path
+print rev
 print "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "
-list 50
+continue
 end
+
+
+
 run
 EOF
 
 
-/usr/local/bin/gdb --command=$TMP_FILE
+$(which gdb) --command=$TMP_FILE
 
 rm $TMP_FILE
