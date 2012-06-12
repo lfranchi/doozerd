@@ -121,7 +121,7 @@ func Main(clusterName, self, buri, rwsk, rosk string, cl *doozer.Conn, udpConn *
 			}
 			// store.Clobber is okay here because the event
 			// has already passed through another store
-			body, _, err := cl.Get(path, &f.Rev)
+			body, _, err := cl.Get(path, &rev)
 			if err != nil {
 				return
 			}
