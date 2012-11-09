@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/soundcloud/doozerd/consensus"
-	"github.com/soundcloud/doozerd/store"
+	"github.com/4ad/doozerd/consensus"
+	"github.com/4ad/doozerd/store"
 	"log"
 	"net"
 	"syscall"

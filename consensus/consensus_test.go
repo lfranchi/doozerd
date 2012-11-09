@@ -3,7 +3,7 @@ package consensus
 import (
 	"errors"
 	"github.com/bmizerany/assert"
-	"github.com/soundcloud/doozerd/store"
+	"github.com/4ad/doozerd/store"
 	"net"
 	"testing"
 	"time"

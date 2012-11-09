@@ -2,8 +2,8 @@ package peer
 
 import (
 	"github.com/bmizerany/assert"
-	"github.com/soundcloud/doozer"
-	"github.com/soundcloud/doozerd/store"
+	"github.com/4ad/doozer"
+	"github.com/4ad/doozerd/store"
 	"os/exec"
 
 	"testing"

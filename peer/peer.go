@@ -1,13 +1,13 @@
 package peer
 
 import (
-	"github.com/soundcloud/doozer"
-	"github.com/soundcloud/doozerd/consensus"
-	"github.com/soundcloud/doozerd/gc"
-	"github.com/soundcloud/doozerd/member"
-	"github.com/soundcloud/doozerd/server"
-	"github.com/soundcloud/doozerd/store"
-	"github.com/soundcloud/doozerd/web"
+	"github.com/4ad/doozer"
+	"github.com/4ad/doozerd/consensus"
+	"github.com/4ad/doozerd/gc"
+	"github.com/4ad/doozerd/member"
+	"github.com/4ad/doozerd/server"
+	"github.com/4ad/doozerd/store"
+	"github.com/4ad/doozerd/web"
 	"io"
 	"log"
 	"net"
